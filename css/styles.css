@@ -1,0 +1,158 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between; /* 保持两端对齐 */
+    align-items: center; /* 垂直居中对齐 */
+    background-color: #f4f4f4;
+    padding: 20px 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+.logo p {
+    margin: 0;
+    font-size: 16px;
+    color: #555;
+    max-width: 350px;
+    line-height: 1.5;
+}
+
+.nav-menu {
+    flex: 1;
+    display: flex;
+    justify-content: center; /* 水平居中对齐 */
+}
+
+.nav-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-menu li {
+    list-style: none;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.nav-menu a:hover {
+    color: #007BFF;
+}
+
+.search-icon {
+    display: flex;
+    align-items: center;
+}
+
+.search-icon button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    position: relative; /* 为了使悬停效果定位正确 */
+}
+
+.search-icon button i {
+    color: black; /* 设置图标颜色为黑色 */
+    font-size: 24px; /* 设置图标大小 */
+    transition: all 0.3s; /* 添加过渡效果 */
+}
+
+.search-icon button:hover i {
+    color: #ff7043; /* 设置悬停时图标颜色 */
+}
+
+.search-icon button:hover::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border: 2px solid #ff7043; /* 设置悬停时的边框颜色 */
+    border-radius: 8px; /* 设置边框圆角 */
+}
+
+.modal {
+    display: none; /* 默认隐藏 */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* 半透明背景 */
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    display: flex;
+    align-items: center; /* 垂直居中对齐 */
+    position: relative;
+}
+
+.modal-content input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    border-bottom: 2px solid #000;
+    outline: none;
+}
+
+.modal-content .search-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 10px;
+}
+
+.modal-content .search-button i {
+    color: black;
+    font-size: 24px;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #ff7043;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #d9534f;
+    text-decoration: none;
+    cursor: pointer;
+}
