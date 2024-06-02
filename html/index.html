@@ -9,17 +9,26 @@
 </head>
 <body>
 <header class="navbar">
-    <div class="logo">
-        <h1>LovePets</h1>
+    <div class="logo-container">
+        <div class="logo">
+            <img src="../img/image_png-removebg-preview.png" alt="LovePets Logo">
+            <h1>LovePets</h1>
+        </div>
         <p>LovePets is a free community to learn more about pet psychology and adoption.</p>
     </div>
     <nav class="nav-menu">
         <ul>
             <li><a href="#">Home</a></li>
-            <li><a href="#">Psychology</a></li>
+            <li class="dropdown"><a href="#">Health Care</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Cat</a></li>
+                    <li><a href="#">Dog</a></li>
+                </ul>
+            </li>
             <li><a href="#">Adopt</a></li>
-            <li><a href="#">Shopping</a></li>
-            <li><a href="#">About Us</a></li>
+            <li><a href="#">Pet Supplies</a></li>
+            <li><a href="#">Picture</a></li>
+            <li><a href="#" class="about">About</a></li>
         </ul>
     </nav>
     <div class="search-icon">
@@ -27,15 +36,58 @@
     </div>
 </header>
 
-<!-- 模态框 -->
-<div id="searchModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <input type="text" placeholder="Search products...">
-        <button class="search-button"><i class="fas fa-search"></i></button>
-    </div>
-</div>
+<img src="../img/e2AX3xqQYn.jpg" alt="Cute pets" class="header-image">
 
-<script src="../js/script.js"></script>
-</body>
-</html>
+<!-- 新增的热门文章部分 -->
+<section class="popular-articles">
+    <div class="popular-articles-header">
+        <h2>Most Popular Articles</h2>
+        <a href="">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                 stroke="currentColor" class="icon">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5"></path>
+            </svg>
+            Explore All
+        </a>
+    </div>
+    <div class="articles">
+        <article>
+            <img src="../img/逗貓棒-1-qcowdjoyqdkschxifii37pnqqmolzo0wit1la5l0hs-768x360.jpg"
+                 alt="Understanding Pet Behavior">
+            <h3>Understanding Pet Behavior</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum
+                vestibulum.</p>
+        </article>
+        <article>
+            <img src="../img/倍力-768x400.jpg" alt="Understanding Pet Behavior">
+            <h3>Top 10 Tips for New Pet Owners</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum
+                vestibulum.</p>
+        </article>
+        <article>
+            <img src="../img/原點飼料評價-768x432.jpg" alt="Understanding Pet Behavior">
+            <h3>How to Train Your Dog</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum
+                vestibulum.</p>
+        </article>
+        <article>
+            <img src="../img/原點飼料評價-768x432.jpg" alt="Understanding Pet Behavior">
+            <h3>How to Be A Good DogTrainer</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum
+                vestibulum.</p>
+        </article>
+        <article>
+            <img src="../img/原點飼料評價-768x432.jpg" alt="Understanding Pet Behavior">
+            <h3>How to Be A Good DogTrainer</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum
+                vestibulum.</p>
+        </article>
+        <article>
+            <img src="../img/逗貓棒-1-qcowdjoyqdkschxifii37pnqqmolzo0wit1la5l0hs-768x360.jpg"
+                 alt="Understanding Pet Behavior">
+            <h3>Understanding Pet Behavior</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum
+                vestibulum.</p>
+        </article>
+    </div>

@@ -5,35 +5,48 @@ body {
 
 .navbar {
     display: flex;
-    justify-content: space-between; /* 保持两端对齐 */
-    align-items: center; /* 垂直居中对齐 */
-    background-color: #f4f4f4;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #faf8f8;
     padding: 20px 40px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.logo {
+
+
+.logo-container {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px; /* Adds space between logo and description */
+}
+
+.logo img {
+    height: 50px;
+    margin-right: 10px;
 }
 
 .logo h1 {
     margin: 0;
-    font-size: 32px;
+    font-size: 24px;
 }
 
-.logo p {
+.logo-container p {
     margin: 0;
-    font-size: 16px;
-    color: #555;
-    max-width: 350px;
-    line-height: 1.5;
+    font-size: 12px;
+    color: #0e0808;
 }
+
 
 .nav-menu {
     flex: 1;
     display: flex;
-    justify-content: center; /* 水平居中对齐 */
+    justify-content: center;
 }
 
 .nav-menu ul {
@@ -51,13 +64,13 @@ body {
 .nav-menu a {
     text-decoration: none;
     color: black;
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 18px; /* 调整字体大小 */
+    font-weight: 580; /* 字体粗细 */
     transition: color 0.3s;
 }
 
 .nav-menu a:hover {
-    color: #007BFF;
+    color: #e27e5f; /* 改变导航菜单悬停时的颜色 */
 }
 
 .search-icon {
@@ -70,32 +83,21 @@ body {
     border: none;
     cursor: pointer;
     padding: 0;
-    position: relative; /* 为了使悬停效果定位正确 */
+    position: relative;
 }
 
 .search-icon button i {
-    color: black; /* 设置图标颜色为黑色 */
-    font-size: 24px; /* 设置图标大小 */
-    transition: all 0.3s; /* 添加过渡效果 */
+    color: black;
+    font-size: 24px;
+    transition: all 0.3s;
 }
 
 .search-icon button:hover i {
-    color: #ff7043; /* 设置悬停时图标颜色 */
-}
-
-.search-icon button:hover::before {
-    content: "";
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    border: 2px solid #ff7043; /* 设置悬停时的边框颜色 */
-    border-radius: 8px; /* 设置边框圆角 */
+    color: #ff7043;
 }
 
 .modal {
-    display: none; /* 默认隐藏 */
+    display: none;
     position: fixed;
     z-index: 1;
     left: 0;
@@ -103,28 +105,37 @@ body {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4); /* 半透明背景 */
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
-    background-color: #fff;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
+    background: url('../img/wave-background.png') no-repeat bottom right;
+    background-size: cover;
+    margin: 10% auto;
+    padding: 40px;
+    border: none;
     width: 80%;
-    max-width: 600px;
-    display: flex;
-    align-items: center; /* 垂直居中对齐 */
+    max-width: 800px;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content .search-box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-bottom: 2px solid #000;
 }
 
 .modal-content input[type="text"] {
     flex: 1;
     padding: 10px;
-    font-size: 18px;
+    font-size: 24px;
     border: none;
-    border-bottom: 2px solid #000;
     outline: none;
+    background: transparent;
 }
 
 .modal-content .search-button {
@@ -142,9 +153,9 @@ body {
 
 .close {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    color: #ff7043;
+    top: 20px;
+    right: 20px;
+    color: #000;
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
@@ -152,7 +163,247 @@ body {
 
 .close:hover,
 .close:focus {
-    color: #d9534f;
+    color: #ff7043;
     text-decoration: none;
     cursor: pointer;
+}
+
+.header-image {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+/* Popular Articles Section */
+.popular-articles {
+    padding: 40px;
+    text-align: left; /* Ensure section content is left-aligned */
+    background-color: #f9f9f9;
+}
+.popular-articles-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative; /* Ensure the pseudo-element is positioned relative to this element */
+    padding-bottom: 10px; /* Space between content and the underline */
+}
+.popular-articles-header::after {
+    content: "";
+    position: absolute;
+    left: 0; /* Start from the left edge */
+    right: 0; /* Extend to the right edge */
+    bottom: 0; /* Position at the bottom */
+    height: 1px; /* Height of the underline */
+    background-color: #e0e0e0; /* Color of the underline */
+    margin-right: 20px;
+    /* No need for z-index here */
+}
+.popular-articles h2 {
+    font-size: 18px;
+    color: #2F3C48;
+    font-weight: 600;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    text-transform: uppercase;
+}
+.popular-articles-header a .icon {
+    width: 12px;   /* New width of the icon */
+    height: 12px;  /* New height of the icon */
+    margin-right: 1px;  /* Space between icon and text */
+    vertical-align: middle;
+}
+
+.popular-articles-header a {
+    font-size: 12px;
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+    margin-right: 20px;
+}
+.popular-articles-header a:hover {
+    color: #0056b3;
+}
+
+.articles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start; /* 确保文章左对齐 */
+}
+.articles article {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: calc(33.333% - 20px); /* 每个文章元素占据三分之一的宽度减去间距 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.articles article img {
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 10px;
+    object-fit: cover;
+}
+.articles article:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.articles h3 {
+    font-size: 24px;
+    color: #007BFF;
+    margin-top: 0;
+}
+
+.articles p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.5;
+    margin: 10px 0 0;
+}
+
+.articles article a {
+    text-decoration: none;
+    color: #007BFF;
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+    transition: color 0.3s;
+}
+
+.articles article a:hover {
+    color: #0056b3;
+}
+@media (max-width: 1200px) {
+    .articles article {
+        width: calc(50% - 20px); /* 每个文章元素占据二分之一的宽度减去间距 */
+    }
+}
+
+@media (max-width: 768px) {
+    .articles article {
+        width: 100%; /* 每个文章元素占据整个行宽 */
+    }
+}
+/* 全局样式 */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.header, .footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.header h1, .footer p {
+    margin: 0;
+}
+
+.main-content {
+    background-color: #fff;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+/* 按钮样式 */
+.button {
+    display: inline-block;
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+/* 表单元素 */
+input[type="text"], textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+/* HealthCare 下拉菜单样式 */
+.nav-menu .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.nav-menu .dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 8px; /* 圆角 */
+    overflow: hidden; /* 确保圆角有效 */
+    width: 150px;
+}
+
+.nav-menu .dropdown-menu li {
+    padding: 12px 16px; /* 增加内边距 */
+    transition: background-color 0.3s; /* 添加过渡效果 */
+}
+
+.nav-menu .dropdown-menu li a {
+    color: #333; /* 更深的文本颜色 */
+    text-decoration: none;
+    display: block;
+    font-size: 16px; /* 调整字体大小 */
+}
+
+.nav-menu .dropdown-menu li a:hover {
+    color: #e27e5f;
+}
+
+.nav-menu .dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu a:hover {
+    color: #e27e5f; /* 改变下拉菜单悬停时的颜色 */
 }
