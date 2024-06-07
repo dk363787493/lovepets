@@ -18,76 +18,102 @@
     </div>
     <nav class="nav-menu">
         <ul>
-            <li><a href="#">Home</a></li>
-            <li class="dropdown"><a href="#">Health Care</a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Cat</a></li>
-                    <li><a href="#">Dog</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Adopt</a></li>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#healthcare">Health Care</a></li>
+            <li><a href="#adopt">Adopt</a></li>
+            <li><a href="#browse">Browse</a></li>
             <li><a href="#">Pet Supplies</a></li>
             <li><a href="#">Picture</a></li>
             <li><a href="#" class="about">About</a></li>
         </ul>
     </nav>
-    <div class="search-icon">
-        <button id="searchButton"><i class="fas fa-search"></i></button>
-    </div>
 </header>
 
-<img src="../img/e2AX3xqQYn.jpg" alt="Cute pets" class="header-image">
+<section id="homeContent">
+    <img src="../img/e2AX3xqQYn.jpg" alt="Cute pets" class="header-image">
+    <!-- 新增的热门文章部分 -->
+    <section class="popular-articles">
+        <div class="popular-articles-header">
+            <h2>Most Popular Articles</h2>
+            <a href="">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" class="icon">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5"></path>
+                </svg>
+                Explore All
+            </a>
+        </div>
+        <div class="articles">
+            <article>
+                <img src="../img/逗貓棒-1-qcowdjoyqdkschxifii37pnqqmolzo0wit1la5l0hs-768x360.jpg"
+                     alt="Understanding Pet Behavior">
+                <h3>Understanding Pet Behavior</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum
+                    vestibulum.</p>
+            </article>
+            <article>
+                <img src="../img/倍力-768x400.jpg" alt="Understanding Pet Behavior">
+                <h3>Top 10 Tips for New Pet Owners</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum
+                    vestibulum.</p>
+            </article>
+            <article>
+                <img src="../img/原點飼料評價-768x432.jpg" alt="Understanding Pet Behavior">
+                <h3>How to Train Your Dog</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum
+                    vestibulum.</p>
+            </article>
+            <article>
+                <img src="../img/原點飼料評價-768x432.jpg" alt="Understanding Pet Behavior">
+                <h3>How to Be A Good DogTrainer</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum
+                    vestibulum.</p>
+            </article>
+            <article>
+                <img src="../img/原點飼料評價-768x432.jpg" alt="Understanding Pet Behavior">
+                <h3>How to Be A Good DogTrainer</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum
+                    vestibulum.</p>
+            </article>
+            <article>
+                <img src="../img/逗貓棒-1-qcowdjoyqdkschxifii37pnqqmolzo0wit1la5l0hs-768x360.jpg"
+                     alt="Understanding Pet Behavior">
+                <h3>Understanding Pet Behavior</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum
+                    vestibulum.</p>
+            </article>
+        </div>
+    </section>
+</section>
 
-<!-- 新增的热门文章部分 -->
-<section class="popular-articles">
-    <div class="popular-articles-header">
-        <h2>Most Popular Articles</h2>
-        <a href="">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                 stroke="currentColor" class="icon">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5"></path>
-            </svg>
-            Explore All
-        </a>
+<section id="browseContent" style="display: none;">
+    <div class="filter-container">
+        <button class="filter-button">Filter</button>
+        <a href="#" class="reset-link">Reset</a>
+        <div class="filter-group">
+            <h3>Business Model</h3>
+            <label><input type="checkbox" name="business-model" value="subscription"> Subscription</label>
+            <label><input type="checkbox" name="business-model" value="google-adsense"> Google Adsense</label>
+            <label><input type="checkbox" name="business-model" value="advertising"> Advertising</label>
+            <label><input type="checkbox" name="business-model" value="transactional"> Transactional</label>
+            <label><input type="checkbox" name="business-model" value="sponsorship"> Sponsorship</label>
+            <label><input type="checkbox" name="business-model" value="affiliate"> Affiliate</label>
+        </div>
+        <div class="filter-group">
+            <h3>Founding Team</h3>
+            <label><input type="checkbox" name="founding-team" value="solo"> Solo</label>
+            <label><input type="checkbox" name="founding-team" value="two"> Two</label>
+            <label><input type="checkbox" name="founding-team" value="multiple"> Multiple</label>
+        </div>
+        <div class="filter-group">
+            <h3>Year Started</h3>
+            <label><input type="checkbox" name="year-started" value="2020-present"> 2020 - Present</label>
+            <label><input type="checkbox" name="year-started" value="2010-2020"> 2010 - 2020</label>
+            <label><input type="checkbox" name="year-started" value="2000-2010"> 2000 - 2010</label>
+            <label><input type="checkbox" name="year-started" value="1990-2000"> 1990 - 2000</label>
+        </div>
     </div>
-    <div class="articles">
-        <article>
-            <img src="../img/逗貓棒-1-qcowdjoyqdkschxifii37pnqqmolzo0wit1la5l0hs-768x360.jpg"
-                 alt="Understanding Pet Behavior">
-            <h3>Understanding Pet Behavior</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum
-                vestibulum.</p>
-        </article>
-        <article>
-            <img src="../img/倍力-768x400.jpg" alt="Understanding Pet Behavior">
-            <h3>Top 10 Tips for New Pet Owners</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum
-                vestibulum.</p>
-        </article>
-        <article>
-            <img src="../img/原點飼料評價-768x432.jpg" alt="Understanding Pet Behavior">
-            <h3>How to Train Your Dog</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum
-                vestibulum.</p>
-        </article>
-        <article>
-            <img src="../img/原點飼料評價-768x432.jpg" alt="Understanding Pet Behavior">
-            <h3>How to Be A Good DogTrainer</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum
-                vestibulum.</p>
-        </article>
-        <article>
-            <img src="../img/原點飼料評價-768x432.jpg" alt="Understanding Pet Behavior">
-            <h3>How to Be A Good DogTrainer</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum
-                vestibulum.</p>
-        </article>
-        <article>
-            <img src="../img/逗貓棒-1-qcowdjoyqdkschxifii37pnqqmolzo0wit1la5l0hs-768x360.jpg"
-                 alt="Understanding Pet Behavior">
-            <h3>Understanding Pet Behavior</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum
-                vestibulum.</p>
-        </article>
-    </div>
+</section>
+<script src="../js/script.js"></script>
+</body>

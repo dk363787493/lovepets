@@ -11,9 +11,6 @@ body {
     padding: 20px 40px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
-
-
 .logo-container {
     display: flex;
     flex-direction: column;
@@ -27,7 +24,7 @@ body {
 }
 
 .logo img {
-    height: 50px;
+    height: 70px;
     margin-right: 10px;
 }
 
@@ -73,29 +70,6 @@ body {
     color: #e27e5f; /* 改变导航菜单悬停时的颜色 */
 }
 
-.search-icon {
-    display: flex;
-    align-items: center;
-}
-
-.search-icon button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    position: relative;
-}
-
-.search-icon button i {
-    color: black;
-    font-size: 24px;
-    transition: all 0.3s;
-}
-
-.search-icon button:hover i {
-    color: #ff7043;
-}
-
 .modal {
     display: none;
     position: fixed;
@@ -106,49 +80,6 @@ body {
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal-content {
-    background: url('../img/wave-background.png') no-repeat bottom right;
-    background-size: cover;
-    margin: 10% auto;
-    padding: 40px;
-    border: none;
-    width: 80%;
-    max-width: 800px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-content .search-box {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    border-bottom: 2px solid #000;
-}
-
-.modal-content input[type="text"] {
-    flex: 1;
-    padding: 10px;
-    font-size: 24px;
-    border: none;
-    outline: none;
-    background: transparent;
-}
-
-.modal-content .search-button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    margin-left: 10px;
-}
-
-.modal-content .search-button i {
-    color: black;
-    font-size: 24px;
 }
 
 .close {
@@ -364,46 +295,98 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #0056b3;
 }
-/* HealthCare 下拉菜单样式 */
-.nav-menu .dropdown {
-    position: relative;
-    display: inline-block;
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #faf8f8;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.nav-menu .dropdown-menu {
-    display: none;
-    position: absolute;
-    background-color: #fff;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    border-radius: 8px; /* 圆角 */
-    overflow: hidden; /* 确保圆角有效 */
-    width: 150px;
+.search-container input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
 }
 
-.nav-menu .dropdown-menu li {
-    padding: 12px 16px; /* 增加内边距 */
-    transition: background-color 0.3s; /* 添加过渡效果 */
+.search-container .search-button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-left: 10px;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
-.nav-menu .dropdown-menu li a {
-    color: #333; /* 更深的文本颜色 */
+.search-container .search-button i {
+    font-size: 18px;
+}
+html {
+    scroll-behavior: smooth;
+}
+.nav-menu a.active {
+    font-weight: bold;
+    color: #007BFF;
+    text-decoration: underline;
+}
+
+.filter-container {
+    position: fixed;
+    top: 180px; /* 调整此值以移动过滤容器 */
+    left: 38px; /* 向右移动容器 */
+    border: 2px solid #D3BDF0;
+    border-radius: 8px;
+    padding: 10px; /* 减小内部填充 */
+    width: 200px; /* 减小宽度 */
+    background-color: #fff; /* 确保其可见 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: calc(100% - 150px); /* 调整高度以适应视口 */
+    overflow-y: auto; /* 如果内容溢出则添加垂直滚动 */
+    font-size: 12px; /* 减小整体字体大小 */
+}
+
+.filter-button {
+    display: block;
+    width: 100%;
+    background-color: #A259FF;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px; /* 减小按钮填充 */
+    font-size: 14px; /* 减小字体大小 */
+    cursor: pointer;
+    text-align: center;
+    margin-bottom: 8px; /* 减小底部外边距 */
+}
+.reset-link {
+    display: block;
+    color: #B0B0B0;
+    text-align: center;
+    margin-bottom: 10px; /* 减小底部外边距 */
+    font-size: 12px; /* 减小字体大小 */
     text-decoration: none;
+}
+.filter-group {
+    margin-bottom: 15px; /* 减小组间距 */
+}
+
+.filter-group h3 {
+    font-size: 14px; /* 减小标题字体大小 */
+    color: #333;
+    margin-bottom: 8px; /* 减小底部外边距 */
+}
+.filter-group label {
     display: block;
-    font-size: 16px; /* 调整字体大小 */
+    font-size: 12px; /* 减小标签字体大小 */
+    color: #555;
+    margin-bottom: 8px; /* 减小底部外边距 */
 }
 
-.nav-menu .dropdown-menu li a:hover {
-    color: #e27e5f;
-}
-
-.nav-menu .dropdown:hover .dropdown-menu {
-    display: block;
-}
-
-.dropdown-menu a:hover {
-    color: #e27e5f; /* 改变下拉菜单悬停时的颜色 */
+.filter-group input[type="checkbox"] {
+    margin-right: 8px; /* 减小复选框右边距 */
 }

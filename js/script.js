@@ -1,21 +1,37 @@
-// 获取相关元素
-const searchButton = document.getElementById('searchButton');
-const searchModal = document.getElementById('searchModal');
-const closeModal = document.getElementsByClassName('close')[0];
-
-// 点击放大镜按钮，打开模态框
-searchButton.onclick = function() {
-    searchModal.style.display = 'block';
-}
-
-// 点击关闭按钮，关闭模态框
-closeModal.onclick = function() {
-    searchModal.style.display = 'none';
-}
-
-// 在窗口外点击，关闭模态框
-window.onclick = function(event) {
-    if (event.target == searchModal) {
-        searchModal.style.display = 'none';
+document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    const homeLink = document.querySelector('a[href="#home"]');
+    const browseLink = document.querySelector('a[href="#browse"]');
+    const homeContent = document.getElementById('homeContent');
+    const resetLink = document.querySelector('.reset-link');
+    const browseContent = document.getElementById('browseContent');
+    const checkboxes = document.querySelectorAll('.filter-container input[type="checkbox"]');
+    function setActiveLink(link) {
+        navLinks.forEach(navLink => navLink.classList.remove('active'));
+        link.classList.add('active');
     }
-}
+
+    homeLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        homeContent.style.display = 'block';
+        browseContent.style.display = 'none';
+        setActiveLink(homeLink);
+    });
+
+    browseLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        homeContent.style.display = 'none';
+        browseContent.style.display = 'block';
+        setActiveLink(browseLink);
+    });
+
+    // Set initial active link
+    setActiveLink(homeLink);
+    // Add reset functionality
+    resetLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = false;
+        });
+    });
+});
