@@ -7,10 +7,11 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #faf8f8;
-    padding: 20px 40px;
+    background-color: #12b412;
+    padding: 20px 110px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 .logo-container {
     display: flex;
     flex-direction: column;
@@ -29,8 +30,9 @@ body {
 }
 
 .logo h1 {
-    margin: 0;
-    font-size: 24px;
+    margin: 10px 0 0 0;
+    font-size: 36px;
+    font-family: 'Pacifico', cursive;
 }
 
 .logo-container p {
@@ -107,12 +109,14 @@ body {
     margin: 0;
     padding: 0;
 }
+
 /* Popular Articles Section */
 .popular-articles {
     padding: 40px;
     text-align: left; /* Ensure section content is left-aligned */
     background-color: #f9f9f9;
 }
+
 .popular-articles-header {
     display: flex;
     justify-content: space-between;
@@ -121,6 +125,7 @@ body {
     position: relative; /* Ensure the pseudo-element is positioned relative to this element */
     padding-bottom: 10px; /* Space between content and the underline */
 }
+
 .popular-articles-header::after {
     content: "";
     position: absolute;
@@ -132,6 +137,7 @@ body {
     margin-right: 20px;
     /* No need for z-index here */
 }
+
 .popular-articles h2 {
     font-size: 18px;
     color: #2F3C48;
@@ -140,10 +146,11 @@ body {
     font-family: 'Arial', sans-serif;
     text-transform: uppercase;
 }
+
 .popular-articles-header a .icon {
-    width: 12px;   /* New width of the icon */
-    height: 12px;  /* New height of the icon */
-    margin-right: 1px;  /* Space between icon and text */
+    width: 12px; /* New width of the icon */
+    height: 12px; /* New height of the icon */
+    margin-right: 1px; /* Space between icon and text */
     vertical-align: middle;
 }
 
@@ -155,6 +162,7 @@ body {
     transition: color 0.3s;
     margin-right: 20px;
 }
+
 .popular-articles-header a:hover {
     color: #0056b3;
 }
@@ -165,6 +173,7 @@ body {
     gap: 20px;
     justify-content: flex-start; /* 确保文章左对齐 */
 }
+
 .articles article {
     background-color: white;
     border: 1px solid #ddd;
@@ -174,12 +183,14 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
 }
+
 .articles article img {
     width: 100%;
     border-radius: 8px 8px 0 0;
     margin-bottom: 10px;
     object-fit: cover;
 }
+
 .articles article:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -210,6 +221,7 @@ body {
 .articles article a:hover {
     color: #0056b3;
 }
+
 @media (max-width: 1200px) {
     .articles article {
         width: calc(50% - 20px); /* 每个文章元素占据二分之一的宽度减去间距 */
@@ -221,6 +233,7 @@ body {
         width: 100%; /* 每个文章元素占据整个行宽 */
     }
 }
+
 /* 全局样式 */
 * {
     box-sizing: border-box;
@@ -257,6 +270,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 /* 按钮样式 */
 .button {
     display: inline-block;
@@ -326,9 +340,11 @@ input[type="submit"]:hover {
 .search-container .search-button i {
     font-size: 18px;
 }
+
 html {
     scroll-behavior: smooth;
 }
+
 .nav-menu a.active {
     font-weight: bold;
     color: #007BFF;
@@ -363,6 +379,7 @@ html {
     text-align: center;
     margin-bottom: 8px; /* 减小底部外边距 */
 }
+
 .reset-link {
     display: block;
     color: #B0B0B0;
@@ -371,6 +388,7 @@ html {
     font-size: 12px; /* 减小字体大小 */
     text-decoration: none;
 }
+
 .filter-group {
     margin-bottom: 15px; /* 减小组间距 */
 }
@@ -380,6 +398,7 @@ html {
     color: #333;
     margin-bottom: 8px; /* 减小底部外边距 */
 }
+
 .filter-group label {
     display: block;
     font-size: 12px; /* 减小标签字体大小 */
@@ -389,4 +408,96 @@ html {
 
 .filter-group input[type="checkbox"] {
     margin-right: 8px; /* 减小复选框右边距 */
+}
+#healthCareContent{
+    width: 60%;
+    padding-left: 110px;
+    margin-top: 80px;
+    border-right: 1px solid #e0e0e0; /* 添加右侧竖线 */
+}
+#healthCareContent .articles {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding-right: 20px;
+    width: 100%;
+    /*border-right: 1px solid #e0e0e0; !* 添加右侧竖线 *!*/
+}
+
+#healthCareContent .article {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /*max-width: 700px;*/
+    width: 96%;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /*padding: 20px;*/
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+#healthCareContent .article .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#healthCareContent .article h3 {
+    margin: 0 0 23px 0;
+    font-size: 18px;
+    color: #18181a;
+}
+
+#healthCareContent .article p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+
+#healthCareContent .article img {
+    flex-shrink: 0;
+    width: 200px;
+    height: auto;
+    border-radius: 8px;
+    margin-left: 20px; /* Ensure space between content and image */
+    object-fit: cover;
+}
+
+#healthCareContent #healthCareContentTitle {
+    width: 93.5%;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0; /* 设置下边界线的颜色和宽度 */
+}
+
+#healthCareContentTitle h2 {
+    font-family: 'Merriweather', serif; /* 设置字体 */
+    font-size: 24px; /* 设置字体大小 */
+    font-weight: 400; /* 设置字体粗细 */
+    color: #3A3F44; /* 设置字体颜色 */
+    margin: 0; /* 去除默认的外边距 */
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.breadcrumb i {
+    font-size: 24px;
+    color: #b0b4b9;
+}
+
+.breadcrumb a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb span {
+    margin: 0 10px;
+    color: #b0b4b9;
 }
