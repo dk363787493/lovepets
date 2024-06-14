@@ -167,14 +167,14 @@ body {
     color: #0056b3;
 }
 
-.articles {
+.homeArticles {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: flex-start; /* 确保文章左对齐 */
 }
 
-.articles article {
+.homeArticles article {
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -184,32 +184,32 @@ body {
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.articles article img {
+.homeArticles article img {
     width: 100%;
     border-radius: 8px 8px 0 0;
     margin-bottom: 10px;
     object-fit: cover;
 }
 
-.articles article:hover {
+.homeArticles article:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.articles h3 {
+.homeArticles h3 {
     font-size: 24px;
     color: #007BFF;
-    margin-top: 0;
+    /*margin-top: -120px;*/
 }
 
-.articles p {
+.homeArticles p {
     font-size: 16px;
     color: #555;
     line-height: 1.5;
     margin: 10px 0 0;
 }
 
-.articles article a {
+.homeArticles article a {
     text-decoration: none;
     color: #007BFF;
     font-weight: bold;
@@ -218,18 +218,18 @@ body {
     transition: color 0.3s;
 }
 
-.articles article a:hover {
+.homeArticles article a:hover {
     color: #0056b3;
 }
 
 @media (max-width: 1200px) {
-    .articles article {
+    .homeArticles article {
         width: calc(50% - 20px); /* 每个文章元素占据二分之一的宽度减去间距 */
     }
 }
 
 @media (max-width: 768px) {
-    .articles article {
+    .homeArticles article {
         width: 100%; /* 每个文章元素占据整个行宽 */
     }
 }
@@ -414,22 +414,22 @@ html {
     padding-left: 110px;
     margin-top: 80px;
     border-right: 1px solid #e0e0e0; /* 添加右侧竖线 */
+    position: relative
 }
-#healthCareContent .articles {
+#healthCareContent .healthCareArticles {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;
     padding-right: 20px;
     width: 100%;
-    /*border-right: 1px solid #e0e0e0; !* 添加右侧竖线 *!*/
 }
 
 #healthCareContent .article {
     display: flex;
     flex-direction: row;
     align-items: center;
-    /*max-width: 700px;*/
+    height: 200px;
     width: 96%;
     border: 1px solid #ddd;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -445,13 +445,15 @@ html {
 }
 
 #healthCareContent .article h3 {
-    margin: 0 0 23px 0;
+    /*margin: 0 0 23px 0;*/
+    margin-left: 20px;
+    margin-top: -25px;
     font-size: 18px;
     color: #18181a;
 }
 
 #healthCareContent .article p {
-    margin: 0;
+    margin: -5px 0 0 20px; /* 向右移动描述 */
     font-size: 14px;
     color: #666;
 }
@@ -461,23 +463,29 @@ html {
     width: 200px;
     height: auto;
     border-radius: 8px;
-    margin-left: 20px; /* Ensure space between content and image */
+    margin-left: 10px; /* Ensure space between content and image */
+    margin-right: 15px; /* Ensure space between content and image */
     object-fit: cover;
 }
 
-#healthCareContent #healthCareContentTitle {
-    width: 93.5%;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #e0e0e0; /* 设置下边界线的颜色和宽度 */
-}
+/*#healthCareContent #healthCareContentTitle {*/
+/*    width: 93.5%;*/
+/*    margin-bottom: 20px;*/
+/*    border-bottom: 1px solid #e0e0e0; !* 设置下边界线的颜色和宽度 *!*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: space-between;*/
+/*}*/
 
-#healthCareContentTitle h2 {
-    font-family: 'Merriweather', serif; /* 设置字体 */
-    font-size: 24px; /* 设置字体大小 */
-    font-weight: 400; /* 设置字体粗细 */
-    color: #3A3F44; /* 设置字体颜色 */
-    margin: 0; /* 去除默认的外边距 */
-}
+/*#healthCareContentTitle h2 {*/
+/*    width: 70%;*/
+/*    font-family: 'Merriweather', serif; !* 设置字体 *!*/
+/*    font-size: 24px; !* 设置字体大小 *!*/
+/*    font-weight: 400; !* 设置字体粗细 *!*/
+/*    color: #3A3F44; !* 设置字体颜色 *!*/
+/*    margin: 0; !* 去除默认的外边距 *!*/
+/*}*/
+
 
 .breadcrumb {
     display: flex;
@@ -500,4 +508,132 @@ html {
 .breadcrumb span {
     margin: 0 10px;
     color: #b0b4b9;
+}
+
+/*分页*/
+.pagination {
+    display: flex;
+    /*justify-content: center;*/
+    margin-left: 320px;
+    margin-top: 20px;
+}
+
+.pagination-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 0;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pagination-list li {
+    display: inline-flex;
+    align-items: center;
+    border-right: 1px solid #dee2e6; /* 添加分隔线 */
+}
+
+.pagination-list li:last-child {
+    border-right: none; /* 最后一个元素不需要分隔线 */
+}
+
+.page-link {
+    display: block;
+    padding: 8px 12px; /* 调整尺寸 */
+    text-decoration: none;
+    color: #495057;
+    background-color: #fff;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.page-link:hover {
+    background-color: #e9ecef;
+    color: #495057;
+}
+
+.page-link.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.page-link.disabled {
+    pointer-events: none;
+    color: #6c757d;
+    background-color: #fff;
+    cursor: not-allowed;
+}
+/*切换按钮 */
+#healthCareContentTitle {
+    width: 93.5%;
+    border-bottom: 1px solid #e0e0e0; /* 设置下边界线的颜色和宽度 */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px; /* 添加底部间距 */
+    position: relative; /* 为绝对定位的按钮提供参考 */
+}
+
+#healthCareContentTitle h2 {
+    margin: 0; /* 去除默认的外边距 */
+    font-size: 24px; /* 设置字体大小 */
+    font-weight: 400; /* 设置字体粗细 */
+    color: #3A3F44; /* 设置字体颜色 */
+    font-family: 'Merriweather', serif; /* 设置字体 */
+    width: 70%; /* 设置标题宽度 */
+}
+
+#healthCareContentTitle .toggle-button {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-140%);
+    width: 60px;
+    height: 30px;
+}
+
+#healthCareContentTitle .toggle-checkbox {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+#healthCareContentTitle .toggle-label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid #ddd;
+    border-radius: 34px;
+    background-color: #ddd;
+    position: relative;
+    transition: background-color 0.2s;
+    width: 100%;
+    height: 100%;
+}
+
+#healthCareContentTitle .toggle-label .toggle-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px;
+    width: 200%;
+    height: 100%;
+    transition: transform 0.2s;
+}
+
+#healthCareContentTitle .toggle-label .toggle-dog,
+#healthCareContentTitle .toggle-label .toggle-cat {
+    font-size: 20px;
+}
+
+#healthCareContentTitle .toggle-checkbox:checked + .toggle-label .toggle-inner {
+    transform: translateX(-50%);
+}
+
+#healthCareContentTitle .toggle-checkbox:checked + .toggle-label {
+    background-color: #4caf50;
 }
