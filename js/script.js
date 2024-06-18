@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const contentDiv = document.getElementById('content');
     const homeLink = document.querySelector('a[href="#home"]');
     const healthCareLink = document.querySelector('a[href="#healthcare"]');
+    const adoptLink = document.querySelector('a[href="#adopt"]');
     const browseLink = document.querySelector('a[href="#browse"]');
 
     function setActiveLink(link) {
@@ -27,6 +28,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     page_temp=1
                 } else if (link === healthCareLink){
                     theme="healthCareArticles"
+                    level_one=category_level_one
+                    level_two=category_level_two
+                    limit_temp=limit
+                    page_temp=page
+                    attachToggleHandlers(theme);
+                } else if (link === adoptLink){
+                    theme="adoptArticles"
                     level_one=category_level_one
                     level_two=category_level_two
                     limit_temp=limit
@@ -88,6 +96,8 @@ document.addEventListener('DOMContentLoaded', function () {
             selector=".homeArticles .article-link"
         }else if(theme=="healthCareArticles"){
             selector=".healthCareArticles .article-link"
+        }else if(theme=="adoptArticles"){
+            selector=".adoptArticles .article-link"
         }
         const articleLinks = document.querySelectorAll(selector);
         articleLinks.forEach(link => {
@@ -104,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let selector=""
         if (theme=="adoptArticles"){
             level_one=2
-            selector=".#healthCareContentTitle .toggle-checkbox"
+            selector="#adoptContentTitle .toggle-checkbox"
         }else if(theme=="healthCareArticles"){
             level_one=1
             selector="#healthCareContentTitle .toggle-checkbox"
@@ -213,6 +223,10 @@ document.addEventListener('DOMContentLoaded', function () {
     healthCareLink.addEventListener('click', function (e) {
         e.preventDefault();
         loadContent('health_care.html', healthCareLink, 5, 1, 1, 2);
+    });
+    adoptLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        loadContent('adopt.html', adoptLink, 5, 1, 2, 1);
     });
     browseLink.addEventListener('click', function (e) {
         e.preventDefault();
