@@ -353,8 +353,8 @@ html {
 
 .filter-container {
     position: fixed;
-    top: 180px; /* 调整此值以移动过滤容器 */
-    left: 38px; /* 向右移动容器 */
+    /*top: 180px; !* 调整此值以移动过滤容器 *!*/
+    /*left: 70px; !* 向右移动容器 *!*/
     border: 2px solid #D3BDF0;
     border-radius: 8px;
     padding: 10px; /* 减小内部填充 */
@@ -409,14 +409,16 @@ html {
 .filter-group input[type="checkbox"] {
     margin-right: 8px; /* 减小复选框右边距 */
 }
-#healthCareContent,#adoptCareContent{
+
+#healthCareContent, #adoptCareContent, #browseContent {
     width: 60%;
     padding-left: 110px;
-    margin-top: 80px;
+    margin-top: 50px;
     border-right: 1px solid #e0e0e0; /* 添加右侧竖线 */
     position: relative
 }
-#healthCareContent .healthCareArticles,#adoptCareContent .adoptArticles {
+
+#healthCareContent .healthCareArticles, #adoptCareContent .adoptArticles {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -425,7 +427,7 @@ html {
     width: 100%;
 }
 
-#healthCareContent .article,#adoptCareContent .article {
+#healthCareContent .article, #adoptCareContent .article {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -438,13 +440,13 @@ html {
     border-radius: 8px;
 }
 
-#healthCareContent .article .content,#adoptCareContent .article .content  {
+#healthCareContent .article .content, #adoptCareContent .article .content {
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
-#healthCareContent .article h3,#adoptCareContent .article h3 {
+#healthCareContent .article h3, #adoptCareContent .article h3 {
     /*margin: 0 0 23px 0;*/
     margin-left: 20px;
     margin-top: -25px;
@@ -452,13 +454,13 @@ html {
     color: #18181a;
 }
 
-#healthCareContent .article p,#adoptCareContent .article p {
+#healthCareContent .article p, #adoptCareContent .article p {
     margin: -5px 0 0 20px; /* 向右移动描述 */
     font-size: 14px;
     color: #666;
 }
 
-#healthCareContent .article img,#adoptCareContent .article img {
+#healthCareContent .article img, #adoptCareContent .article img {
     flex-shrink: 0;
     width: 200px;
     height: auto;
@@ -548,8 +550,9 @@ html {
     background-color: #fff;
     cursor: not-allowed;
 }
+
 /*切换按钮 */
-#healthCareContentTitle,#adoptContentTitle {
+#healthCareContentTitle, #adoptContentTitle {
     width: 93.5%;
     border-bottom: 1px solid #e0e0e0; /* 设置下边界线的颜色和宽度 */
     display: flex;
@@ -559,7 +562,7 @@ html {
     position: relative; /* 为绝对定位的按钮提供参考 */
 }
 
-#healthCareContentTitle h2,#adoptContentTitle h2 {
+#healthCareContentTitle h2, #adoptContentTitle h2 {
     margin: 0; /* 去除默认的外边距 */
     font-size: 24px; /* 设置字体大小 */
     font-weight: 400; /* 设置字体粗细 */
@@ -568,7 +571,7 @@ html {
     width: 70%; /* 设置标题宽度 */
 }
 
-#healthCareContentTitle .toggle-button,#adoptContentTitle .toggle-button {
+#healthCareContentTitle .toggle-button, #adoptContentTitle .toggle-button {
     position: absolute;
     right: 0;
     top: 50%;
@@ -577,13 +580,13 @@ html {
     height: 30px;
 }
 
-#healthCareContentTitle .toggle-checkbox ,#adoptContentTitle .toggle-checkbox{
+#healthCareContentTitle .toggle-checkbox, #adoptContentTitle .toggle-checkbox {
     opacity: 0;
     width: 0;
     height: 0;
 }
 
-#healthCareContentTitle .toggle-label ,#adoptContentTitle .toggle-label{
+#healthCareContentTitle .toggle-label, #adoptContentTitle .toggle-label {
     display: block;
     overflow: hidden;
     cursor: pointer;
@@ -596,7 +599,7 @@ html {
     height: 100%;
 }
 
-#healthCareContentTitle .toggle-label .toggle-inner,#adoptContentTitle .toggle-label .toggle-inner {
+#healthCareContentTitle .toggle-label .toggle-inner, #adoptContentTitle .toggle-label .toggle-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -613,10 +616,60 @@ html {
     font-size: 20px;
 }
 
-#healthCareContentTitle .toggle-checkbox:checked + .toggle-label .toggle-inner ,#adoptContentTitle .toggle-checkbox:checked + .toggle-label .toggle-inner{
+#healthCareContentTitle .toggle-checkbox:checked + .toggle-label .toggle-inner, #adoptContentTitle .toggle-checkbox:checked + .toggle-label .toggle-inner {
     transform: translateX(-50%);
 }
 
-#healthCareContentTitle .toggle-checkbox:checked + .toggle-label,#adoptContentTitle .toggle-checkbox:checked + .toggle-label {
+#healthCareContentTitle .toggle-checkbox:checked + .toggle-label, #adoptContentTitle .toggle-checkbox:checked + .toggle-label {
     background-color: #4caf50;
+}
+
+
+
+
+.custom-dropdown {
+    position: relative;
+    width: 150px;
+    margin: 20px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.dropdown-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    background-color: #fff;
+    border-radius: 8px; /* 圆角 */
+    height: 30px; /* 设置下拉框头部的高度 */
+}
+
+.dropdown-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    z-index: 1000;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; /* 圆角 */
+    overflow-y: auto; /* 启用垂直滚动条 */
+}
+
+.dropdown-options.show {
+    display: block;
+}
+
+.dropdown-option {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown-option:hover {
+    background-color: #f1f1f1;
 }

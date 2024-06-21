@@ -17,31 +17,36 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => {
                 contentDiv.innerHTML = data;
                 setActiveLink(link);
-                let theme=""
-                let level_one=""
-                let level_two=""
-                let limit_temp=0
-                let page_temp=0
+                let theme = ""
+                let level_one = ""
+                let level_two = ""
+                let limit_temp = 0
+                let page_temp = 0
                 if (link === homeLink) {
-                    theme="homeArticles"
-                    limit_temp=20
-                    page_temp=1
-                } else if (link === healthCareLink){
-                    theme="healthCareArticles"
-                    level_one=category_level_one
-                    level_two=category_level_two
-                    limit_temp=limit
-                    page_temp=page
+                    theme = "homeArticles"
+                    limit_temp = 20
+                    page_temp = 1
+                } else if (link === healthCareLink) {
+                    theme = "healthCareArticles"
+                    level_one = category_level_one
+                    level_two = category_level_two
+                    limit_temp = limit
+                    page_temp = page
                     attachToggleHandlers(theme);
-                } else if (link === adoptLink){
-                    theme="adoptArticles"
-                    level_one=category_level_one
-                    level_two=category_level_two
-                    limit_temp=limit
-                    page_temp=page
+                } else if (link === adoptLink) {
+                    theme = "adoptArticles"
+                    level_one = category_level_one
+                    level_two = category_level_two
+                    limit_temp = limit
+                    page_temp = page
                     attachToggleHandlers(theme);
+                }else if (link === browseLink){
+                    console.log("......browseLink")
+                    addDropdownHandlers();
                 }
-                fetchArticles(theme, limit_temp, page_temp, level_one, level_two)
+                if (link !== browseLink){
+                    fetchArticles(theme, limit_temp, page_temp, level_one, level_two)
+                }
 
             })
             .catch(error => console.error('Error loading content:', error));
@@ -51,6 +56,12 @@ document.addEventListener('DOMContentLoaded', function () {
         let url = `http://localhost:8081/article?is_short=1&limit=${limit}&page=${page}`;
         if (category_level_one != "") {
             url = `${url}&category_level_one=${category_level_one}&category_level_two=${category_level_two}`;
+        }
+        if (limit == 0) {
+            limit = 1
+        }
+        if (page == 0) {
+            page = 5
         }
         fetch(url)
             .then(response => response.json())
@@ -78,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     generatePagination(articles.totalCnt, limit, page, category_level_one, category_level_two);
                 }
             })
-            .catch(error => console.error('Error fetching articles:', error));
+            .catch(err => console.error(err));
     }
 
     function fetchArticleContent(articleId) {
@@ -91,13 +102,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function attachArticleClickHandlers(theme) {
-        let selector=""
-        if (theme=="homeArticles"){
-            selector=".homeArticles .article-link"
-        }else if(theme=="healthCareArticles"){
-            selector=".healthCareArticles .article-link"
-        }else if(theme=="adoptArticles"){
-            selector=".adoptArticles .article-link"
+        let selector = ""
+        if (theme == "homeArticles") {
+            selector = ".homeArticles .article-link"
+        } else if (theme == "healthCareArticles") {
+            selector = ".healthCareArticles .article-link"
+        } else if (theme == "adoptArticles") {
+            selector = ".adoptArticles .article-link"
         }
         const articleLinks = document.querySelectorAll(selector);
         articleLinks.forEach(link => {
@@ -111,13 +122,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function attachToggleHandlers(theme) {
         let level_one
-        let selector=""
-        if (theme=="adoptArticles"){
-            level_one=2
-            selector="#adoptContentTitle .toggle-checkbox"
-        }else if(theme=="healthCareArticles"){
-            level_one=1
-            selector="#healthCareContentTitle .toggle-checkbox"
+        let selector = ""
+        if (theme == "adoptArticles") {
+            level_one = 2
+            selector = "#adoptContentTitle .toggle-checkbox"
+        } else if (theme == "healthCareArticles") {
+            level_one = 1
+            selector = "#healthCareContentTitle .toggle-checkbox"
         }
         const toggleLink = document.querySelector(selector);
         toggleLink.addEventListener('change', function () {
@@ -132,6 +143,33 @@ document.addEventListener('DOMContentLoaded', function () {
 
     }
 
+    function addDropdownHandlers() {
+        const dropdownHeader = document.querySelector('.dropdown-header');
+        const dropdownOptions = document.querySelector('.dropdown-options');
+
+        dropdownHeader.addEventListener('click', function() {
+            console.log('Dropdown header clicked');
+            dropdownOptions.classList.toggle('show');
+            console.log(dropdownOptions.classList);
+        });
+
+        const options = document.querySelectorAll('.dropdown-option');
+
+        options.forEach(option => {
+            option.addEventListener('click', function() {
+                if (!option.classList.contains('disabled')) {
+                    dropdownHeader.querySelector('span').innerText = option.innerText;
+                    dropdownOptions.classList.remove('show');
+                }
+            });
+        });
+
+        document.addEventListener('click', function(event) {
+            if (!dropdownHeader.contains(event.target) && !dropdownOptions.contains(event.target)) {
+                dropdownOptions.classList.remove('show');
+            }
+        });
+    }
     function generatePagination(totalCnt, limit, currentPage, category_level_one, category_level_two) {
         const paginationDiv = document.getElementById('pagination');
         paginationDiv.innerHTML = ''; // Clear old pagination
@@ -226,7 +264,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     adoptLink.addEventListener('click', function (e) {
         e.preventDefault();
-        loadContent('adopt.html', adoptLink, 5, 1, 2, 1);
+        loadContent('adopt.html', adoptLink, 5, 1, 2, 2);
     });
     browseLink.addEventListener('click', function (e) {
         e.preventDefault();
@@ -235,5 +273,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Initialize the home page by default
     loadContent('home.html', homeLink, 20, 1, "", "");
+
 });
+
+
 
