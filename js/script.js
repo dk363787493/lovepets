@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
         link.classList.add('active');
     }
 
-    function loadContent(url, link, limit, page, category_level_one, category_level_two) {
+    function loadContent(url, link, limit, page, category_level_one, category_level_two, themeId) {
         fetch(url)
             .then(response => response.text())
             .then(data => {
@@ -40,11 +40,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     limit_temp = limit
                     page_temp = page
                     attachToggleHandlers(theme);
-                }else if (link === browseLink){
-                    console.log("......browseLink")
+                } else if (link === browseLink) {
+                    themesHandler();
+                    fetchSubThemes(themeId);
                     addDropdownHandlers();
                 }
-                if (link !== browseLink){
+                if (link !== browseLink) {
                     fetchArticles(theme, limit_temp, page_temp, level_one, level_two)
                 }
 
@@ -134,10 +135,8 @@ document.addEventListener('DOMContentLoaded', function () {
         toggleLink.addEventListener('change', function () {
             if (toggleLink.checked) {
                 fetchArticles(theme, 5, 1, level_one, 1)
-                console.log('Cat mode activated!');
             } else {
                 fetchArticles(theme, 5, 1, level_one, 2)
-                console.log('Dog mode activated!');
             }
         });
 
@@ -147,16 +146,14 @@ document.addEventListener('DOMContentLoaded', function () {
         const dropdownHeader = document.querySelector('.dropdown-header');
         const dropdownOptions = document.querySelector('.dropdown-options');
 
-        dropdownHeader.addEventListener('click', function() {
-            console.log('Dropdown header clicked');
+        dropdownHeader.addEventListener('click', function () {
             dropdownOptions.classList.toggle('show');
-            console.log(dropdownOptions.classList);
         });
 
         const options = document.querySelectorAll('.dropdown-option');
 
         options.forEach(option => {
-            option.addEventListener('click', function() {
+            option.addEventListener('click', function () {
                 if (!option.classList.contains('disabled')) {
                     dropdownHeader.querySelector('span').innerText = option.innerText;
                     dropdownOptions.classList.remove('show');
@@ -164,12 +161,13 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
 
-        document.addEventListener('click', function(event) {
+        document.addEventListener('click', function (event) {
             if (!dropdownHeader.contains(event.target) && !dropdownOptions.contains(event.target)) {
                 dropdownOptions.classList.remove('show');
             }
         });
     }
+
     function generatePagination(totalCnt, limit, currentPage, category_level_one, category_level_two) {
         const paginationDiv = document.getElementById('pagination');
         paginationDiv.innerHTML = ''; // Clear old pagination
@@ -253,6 +251,47 @@ document.addEventListener('DOMContentLoaded', function () {
         paginationDiv.appendChild(ul);
     }
 
+    function themesHandler() {
+        const radioButtons = document.querySelectorAll('input[name="theme-selector"]');
+        radioButtons.forEach(radio => {
+            radio.addEventListener('change', function () {
+                const themeId = this.value;
+                console.log("click.......")
+                if (browseLink.classList.contains('active')) {
+                    fetchSubThemes(themeId);
+                }
+            });
+        });
+    }
+
+    function fetchSubThemes(themeId) {
+        let url = `http://localhost:8081/theme/${themeId}`;
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const subThemes = data.sub_themes;
+                const dropdownOptions = document.querySelector('.dropdown-options');
+                dropdownOptions.innerHTML = ''; // Clear any existing options
+
+                const option = document.createElement('div');
+                option.className = 'dropdown-option';
+                option.innerText = "All";
+                option.value = 0;
+                dropdownOptions.appendChild(option);
+
+                subThemes.forEach(subTheme => {
+                    const option = document.createElement('div');
+                    option.className = 'dropdown-option';
+                    option.innerText = subTheme.SubTheme;
+                    option.value = subTheme.Id;
+                    dropdownOptions.appendChild(option);
+                });
+
+                // addDropdownHandlers(); // Re-attach dropdown handlers to the new options
+            })
+            .catch(error => console.error('Error fetching sub themes:', error));
+    }
+
     homeLink.addEventListener('click', function (e) {
         e.preventDefault();
         loadContent('home.html', homeLink, 20, 1, "", "");
@@ -268,8 +307,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     browseLink.addEventListener('click', function (e) {
         e.preventDefault();
-        loadContent('browse.html', browseLink, 10, 1, "", "");
+        loadContent('browse.html', browseLink, 10, 1, "", "", 1);
     });
+
 
     // Initialize the home page by default
     loadContent('home.html', homeLink, 20, 1, "", "");

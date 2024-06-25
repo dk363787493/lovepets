@@ -625,12 +625,10 @@ html {
 }
 
 
-
-
 .custom-dropdown {
     position: relative;
     width: 150px;
-    margin: 20px 0;
+    margin: 10px 0;
     border-radius: 8px;
     border: 1px solid #ccc;
 }
