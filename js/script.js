@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const adoptLink = document.querySelector('a[href="#adopt"]');
     const browseLink = document.querySelector('a[href="#browse"]');
 
+
     function setActiveLink(link) {
         navLinks.forEach(navLink => navLink.classList.remove('active'));
         link.classList.add('active');
@@ -42,9 +43,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     attachToggleHandlers(theme);
                 } else if (link === browseLink) {
                     themesHandler();
-                    addDropdownHandlers();
                     fetchSubThemes(category_level_two);
                     initialBrowseFilter();
+                    addDropdownHandlers();
+                    fileterButtonHandler();
                 }
                 if (link !== browseLink) {
                     fetchArticles(theme, limit_temp, page_temp, level_one, level_two)
@@ -54,8 +56,8 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(error => console.error('Error loading content:', error));
     }
 
-    function fetchArticles(theme, limit, page, category_level_one, category_level_two) {
-        let url = `http://localhost:8081/article?is_short=1&limit=${limit}&page=${page}`;
+    function fetchArticles(theme, limit, page, category_level_one, category_level_two, sub_theme) {
+        let url = `http://localhost:8081/article?is_short=1&limit=${limit}&page=${page}&sub_theme=${sub_theme}`;
         if (category_level_one != "") {
             url = `${url}&category_level_one=${category_level_one}&category_level_two=${category_level_two}`;
         }
@@ -94,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(err => console.error(err));
     }
 
-    function initialBrowseFilter(){
+    function initialBrowseFilter() {
         const catRadioButton = document.querySelector('input[name="pet-classification"][value="1"]');
         if (catRadioButton) {
             catRadioButton.checked = true;
@@ -104,7 +106,10 @@ document.addEventListener('DOMContentLoaded', function () {
         if (themeRadioButton) {
             themeRadioButton.checked = true;
         }
+
+        fetchArticles('filterArticles', 5, 1, 1, 1, 0);
     }
+
     function fetchArticleContent(articleId) {
         fetch(`http://localhost:8081/article/${articleId}`)
             .then(response => response.json())
@@ -122,6 +127,8 @@ document.addEventListener('DOMContentLoaded', function () {
             selector = ".healthCareArticles .article-link"
         } else if (theme == "adoptArticles") {
             selector = ".adoptArticles .article-link"
+        } else if (theme == "filterArticles") {
+            selector = ".filterArticles .article-link"
         }
         const articleLinks = document.querySelectorAll(selector);
         articleLinks.forEach(link => {
@@ -162,22 +169,52 @@ document.addEventListener('DOMContentLoaded', function () {
             dropdownOptions.classList.toggle('show');
         });
 
-        const options = document.querySelectorAll('.dropdown-option');
-
-        options.forEach(option => {
-            option.addEventListener('click', function () {
-                if (!option.classList.contains('disabled')) {
-                    dropdownHeader.querySelector('span').innerText = option.innerText;
-                    dropdownOptions.classList.remove('show');
-                }
-            });
-        });
-
         document.addEventListener('click', function (event) {
             if (!dropdownHeader.contains(event.target) && !dropdownOptions.contains(event.target)) {
                 dropdownOptions.classList.remove('show');
             }
         });
+    }
+
+    function fetchSubThemes(themeId) {
+        let url = `http://localhost:8081/theme/${themeId}`;
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const subThemes = data.sub_themes;
+                const dropdownOptions = document.querySelector('.dropdown-options');
+                dropdownOptions.innerHTML = ''; // Clear any existing options
+
+                const dropdownHeader = document.querySelector('.dropdown-header');
+                const option = document.createElement('div');
+                option.className = 'dropdown-option';
+                option.innerText = "All";
+                option.value = 0;
+                option.addEventListener('click', function () {
+                    if (!option.classList.contains('disabled')) {
+                        dropdownHeader.querySelector('span').innerText = option.innerText;
+                        dropdownOptions.classList.remove('show');
+                    }
+                });
+
+                dropdownOptions.appendChild(option);
+                subThemes.forEach(subTheme => {
+                    const option = document.createElement('div');
+                    option.className = 'dropdown-option';
+                    option.innerText = subTheme.SubTheme;
+                    option.value = subTheme.Id;
+                    option.addEventListener('click', function () {
+                        if (!option.classList.contains('disabled')) {
+                            dropdownHeader.querySelector('span').innerText = option.innerText;
+                            dropdownOptions.classList.remove('show');
+                        }
+                    });
+                    dropdownOptions.appendChild(option);
+                });
+
+                // addDropdownHandlers(); // Re-attach dropdown handlers to the new options
+            })
+            .catch(error => console.error('Error fetching sub themes:', error));
     }
 
     function generatePagination(totalCnt, limit, currentPage, category_level_one, category_level_two) {
@@ -263,6 +300,7 @@ document.addEventListener('DOMContentLoaded', function () {
         paginationDiv.appendChild(ul);
     }
 
+    // 主题选择触发器handler
     function themesHandler() {
         const radioButtons = document.querySelectorAll('input[name="theme-selector"]');
         radioButtons.forEach(radio => {
@@ -275,32 +313,24 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    function fetchSubThemes(themeId) {
-        let url = `http://localhost:8081/theme/${themeId}`;
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                const subThemes = data.sub_themes;
-                const dropdownOptions = document.querySelector('.dropdown-options');
-                dropdownOptions.innerHTML = ''; // Clear any existing options
+    function fileterButtonHandler() {
+        const filterButton = document.getElementById('filter-button');
+        filterButton.addEventListener('click', function () {
+            const selectedTheme = document.querySelector('input[name="theme-selector"]:checked').value;
+            const selectedClassification = document.querySelector('input[name="pet-classification"]:checked').value;
+            const selectedSubTheme = document.querySelector('.dropdown-header span').innerText;
 
-                const option = document.createElement('div');
-                option.className = 'dropdown-option';
-                option.innerText = "All";
-                option.value = 0;
-                dropdownOptions.appendChild(option);
-
-                subThemes.forEach(subTheme => {
-                    const option = document.createElement('div');
-                    option.className = 'dropdown-option';
-                    option.innerText = subTheme.SubTheme;
-                    option.value = subTheme.Id;
-                    dropdownOptions.appendChild(option);
-                });
-
-                // addDropdownHandlers(); // Re-attach dropdown handlers to the new options
-            })
-            .catch(error => console.error('Error fetching sub themes:', error));
+            // 如果没有选定子主题，请使用默认值 0
+            let selectedSubThemeId = 0;
+            const dropdownOptions = document.querySelectorAll('.dropdown-option');
+            dropdownOptions.forEach(option => {
+                if (option.innerText === selectedSubTheme) {
+                    selectedSubThemeId = option.value;
+                }
+            });
+            // 使用收集到的筛选器值发送请求以获取文章数据
+            fetchArticles('filterArticles', 5, 1, selectedClassification, selectedTheme, selectedSubThemeId);
+        });
     }
 
     homeLink.addEventListener('click', function (e) {
