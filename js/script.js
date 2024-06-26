@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
         link.classList.add('active');
     }
 
-    function loadContent(url, link, limit, page, category_level_one, category_level_two, themeId) {
+    function loadContent(url, link, limit, page, category_level_one, category_level_two) {
         fetch(url)
             .then(response => response.text())
             .then(data => {
@@ -42,8 +42,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     attachToggleHandlers(theme);
                 } else if (link === browseLink) {
                     themesHandler();
-                    fetchSubThemes(themeId);
                     addDropdownHandlers();
+                    fetchSubThemes(category_level_two);
+                    initialBrowseFilter();
                 }
                 if (link !== browseLink) {
                     fetchArticles(theme, limit_temp, page_temp, level_one, level_two)
@@ -93,6 +94,17 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(err => console.error(err));
     }
 
+    function initialBrowseFilter(){
+        const catRadioButton = document.querySelector('input[name="pet-classification"][value="1"]');
+        if (catRadioButton) {
+            catRadioButton.checked = true;
+        }
+
+        const themeRadioButton = document.querySelector('input[name="theme-selector"][value="1"]');
+        if (themeRadioButton) {
+            themeRadioButton.checked = true;
+        }
+    }
     function fetchArticleContent(articleId) {
         fetch(`http://localhost:8081/article/${articleId}`)
             .then(response => response.json())
@@ -256,7 +268,6 @@ document.addEventListener('DOMContentLoaded', function () {
         radioButtons.forEach(radio => {
             radio.addEventListener('change', function () {
                 const themeId = this.value;
-                console.log("click.......")
                 if (browseLink.classList.contains('active')) {
                     fetchSubThemes(themeId);
                 }
@@ -307,7 +318,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     browseLink.addEventListener('click', function (e) {
         e.preventDefault();
-        loadContent('browse.html', browseLink, 10, 1, "", "", 1);
+        loadContent('browse.html', browseLink, 10, 1, "", 1);
     });
 
 
