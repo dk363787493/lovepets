@@ -1,18 +1,17 @@
 document.addEventListener('DOMContentLoaded', function () {
     const navLinks = document.querySelectorAll('.nav-menu a');
     const contentDiv = document.getElementById('content');
-    const homeLink = document.querySelector('a[href="#home"]');
-    const healthCareLink = document.querySelector('a[href="#healthcare"]');
-    const adoptLink = document.querySelector('a[href="#adopt"]');
-    const browseLink = document.querySelector('a[href="#browse"]');
-
+    const homeLink = document.getElementById('home-link');
+    const healthCareLink = document.getElementById('healthcare-link');
+    const adoptLink = document.getElementById('adopt-link');
+    const browseLink = document.getElementById('browse-link');
 
     function setActiveLink(link) {
         navLinks.forEach(navLink => navLink.classList.remove('active'));
         link.classList.add('active');
     }
 
-    function loadContent(url, link, limit, page, category_level_one, category_level_two) {
+    function loadContent(url, link, limit, page, category_level_one, category_level_two, pushState) {
         fetch(url)
             .then(response => response.text())
             .then(data => {
@@ -23,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 let level_two = ""
                 let limit_temp = 0
                 let page_temp = 0
+                let sub_theme=0
                 if (link === homeLink) {
                     theme = "homeArticles"
                     limit_temp = 20
@@ -49,14 +49,18 @@ document.addEventListener('DOMContentLoaded', function () {
                     fileterButtonHandler();
                 }
                 if (link !== browseLink) {
-                    fetchArticles(theme, limit_temp, page_temp, level_one, level_two)
+                    fetchArticles(theme, limit_temp, page_temp, level_one, level_two,sub_theme)
                 }
 
+                if (pushState) {
+                    history.pushState({url, limit, page, category_level_one, category_level_two}, '', url);
+                }
             })
             .catch(error => console.error('Error loading content:', error));
     }
 
     function fetchArticles(theme, limit, page, category_level_one, category_level_two, sub_theme) {
+        console.log("undefined sub_theme", sub_theme)
         let url = `http://localhost:8081/article?is_short=1&limit=${limit}&page=${page}&sub_theme=${sub_theme}`;
         if (category_level_one != "") {
             url = `${url}&category_level_one=${category_level_one}&category_level_two=${category_level_two}`;
@@ -333,29 +337,46 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    homeLink.addEventListener('click', function (e) {
-        e.preventDefault();
-        loadContent('home.html', homeLink, 20, 1, "", "");
+    // homeLink.addEventListener('click', function (e) {
+    //     e.preventDefault();
+    //     loadContent('home.html', homeLink, 20, 1, "", "");
+    // });
+    //
+    // healthCareLink.addEventListener('click', function (e) {
+    //     e.preventDefault();
+    //     loadContent('health_care.html', healthCareLink, 5, 1, 1, 2);
+    // });
+    // adoptLink.addEventListener('click', function (e) {
+    //     e.preventDefault();
+    //     loadContent('adopt.html', adoptLink, 5, 1, 2, 2);
+    // });
+    // browseLink.addEventListener('click', function (e) {
+    //     e.preventDefault();
+    //     loadContent('browse.html', browseLink, 10, 1, "", 1);
+    // });
+    //TODO
+    navLinks.forEach(link => {
+        let link_id = link.getAttribute('id')
+        // if (link_id==""){
+        //
+        // }
+        link.addEventListener('click', function (event) {
+            event.preventDefault();
+            const url = this.getAttribute('href');
+            const limit = 10;
+            const page = 1;
+            const category_level_one = '1';
+            const category_level_two = '1';
+            loadContent(url, this, limit, page, category_level_one, category_level_two, true);
+        });
     });
 
-    healthCareLink.addEventListener('click', function (e) {
-        e.preventDefault();
-        loadContent('health_care.html', healthCareLink, 5, 1, 1, 2);
-    });
-    adoptLink.addEventListener('click', function (e) {
-        e.preventDefault();
-        loadContent('adopt.html', adoptLink, 5, 1, 2, 2);
-    });
-    browseLink.addEventListener('click', function (e) {
-        e.preventDefault();
-        loadContent('browse.html', browseLink, 10, 1, "", 1);
+    window.addEventListener('popstate', function (event) {
+        if (event.state) {
+            loadContent(event.state.url, null, event.state.limit, event.state.page, event.state.category_level_one, event.state.category_level_two, false);
+        }
     });
 
-
-    // Initialize the home page by default
-    loadContent('home.html', homeLink, 20, 1, "", "");
-
+    // Load initial content
+    loadContent('home.html', homeLink, 20, 1, '', '', false);
 });
-
-
-
