@@ -8,30 +8,35 @@
     <link rel="stylesheet" href="../css/custom-styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <script type="module" src="../js/header.js"></script>
+    <script type="module" src="../js/script.js"></script>
 </head>
 <body>
-<header class="navbar">
-    <div class="logo-container">
-        <div class="logo">
-            <a href="./index.html">
-                <img src="../img/image_png-removebg-preview.png" alt="LovePets Logo">
+<my-header></my-header>
+<div id="homeContent">
+    <img src="../img/e2AX3xqQYn.jpg" alt="Cute pets" class="header-image">
+    <!-- 新增的热门文章部分 -->
+    <section class="popular-articles">
+        <div class="popular-articles-header">
+            <h2>Most Popular Articles</h2>
+            <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" class="icon">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5"></path>
+                </svg>
+                Explore All
             </a>
-            <h1>LovePets</h1>
         </div>
-        <p>LovePets is a free community to learn more about pet psychology and adoption.</p>
-    </div>
-    <nav class="nav-menu">
-        <ul>
-            <li><a href="./home.html" id="home-link">Home</a></li>
-            <li><a href="./health_care.html" id="healthcare-link">Health Care</a></li>
-            <li><a href="./adopt.html" id="adopt-link">Adopt</a></li>
-            <li><a href="./browse.html" id="browse-link">Browse</a></li>
-            <li><a href="./pet-supplies" id="healthcare-link">Pet Supplies</a></li>
-            <li><a href="./about" class="about">About</a></li>
-        </ul>
-    </nav>
-</header>
-<div id="content"></div>
-<script src="../js/script.js"></script>
+        <div class="homeArticles" id="homeArticles">
+            <!-- 文章内容将动态插入到这里 -->
+        </div>
+    </section>
+</div>
+<script type="module">
+    import { loadContent } from '../js/script.js';
+    const homeLink = document.getElementById('home-link');
+    loadContent('index.html', homeLink, 20, 1, "", "",true);
+</script>
 </body>
 </html>
