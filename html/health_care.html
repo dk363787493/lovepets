@@ -13,14 +13,14 @@
 </head>
 <body>
 <my-header></my-header>
+<div class="breadcrumb">
+    <a href="./index.html">
+        <i class="fas fa-home"></i>
+    </a>
+    <span>/</span>
+    <span>Pets Health Care</span>
+</div>
 <div id="healthCareContent">
-    <div class="breadcrumb">
-        <a href="./index.html">
-            <i class="fas fa-home"></i>
-        </a>
-        <span>/</span>
-        <span>Pets Health Care</span>
-    </div>
     <div id="healthCareContentTitle" class="title-with-toggle">
         <h2>Bite-sized analysis of boring businesses</h2>
         <div class="toggle-button">
@@ -35,12 +35,14 @@
     </div>
     <div class="healthCareArticles" id="healthCareArticles">
     </div>
+    <div id="pagination" class="pagination"></div>
 </div>
+<div id="healthArticle"></div>
 <script type="module">
     import { loadContent } from '../js/script.js';
     const healthcareLink = document.getElementById('healthcare-link');
     loadContent('health_care.html', healthcareLink, 5, 1, 1, 2,true);
 </script>
-<div id="pagination" class="pagination"></div>
+
 </body>
 

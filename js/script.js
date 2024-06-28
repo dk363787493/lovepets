@@ -81,11 +81,29 @@ export function fetchArticles(theme, limit, page, category_level_one, category_l
 }
 
 
-export function fetchArticleContent(articleId) {
+export function fetchArticleContent(theme,articleId) {
+    let articleContent
+    if (theme == "homeArticles") {
+        let contentDiv=document.getElementById("homeContent")
+        contentDiv.innerHTML=""
+        articleContent=document.getElementById("homeArticle")
+    } else if (theme == "healthCareArticles") {
+        let contentDiv=document.getElementById("healthCareContent")
+        contentDiv.innerHTML=""
+        articleContent=document.getElementById("healthArticle")
+    } else if (theme == "adoptArticles") {
+        let contentDiv=document.getElementById("adoptCareContent")
+        contentDiv.innerHTML=""
+        articleContent=document.getElementById("adoptArticle")
+    } else if (theme == "filterArticles") {
+        let contentDiv=document.getElementById("browseContent")
+        contentDiv.innerHTML = ""
+        articleContent=document.getElementById("browseArticle")
+    }
     fetch(`http://localhost:8081/article/${articleId}`)
         .then(response => response.json())
-        .then(articleContent => {
-            contentDiv.innerHTML = articleContent.data.content; // Insert the article HTML content into the page
+        .then(article => {
+            articleContent.innerHTML = article.data.content; // Insert the article HTML content into the page
         })
         .catch(error => console.error('Error fetching article content:', error));
 }
@@ -94,19 +112,27 @@ export function attachArticleClickHandlers(theme) {
     let selector = ""
     if (theme == "homeArticles") {
         selector = ".homeArticles .article-link"
+        // let contentDiv=document.getElementById("homeContent")
+        // contentDiv.innerHTML=""
     } else if (theme == "healthCareArticles") {
         selector = ".healthCareArticles .article-link"
+        // contentDiv.innerHTML=""
+        // articleDiv=document.getElementById("healthArticle")
     } else if (theme == "adoptArticles") {
         selector = ".adoptArticles .article-link"
+        // let contentDiv=document.getElementById("adoptCareContent")
+        // contentDiv.innerHTML=""
     } else if (theme == "filterArticles") {
         selector = ".filterArticles .article-link"
+        // let contentDiv=document.getElementById("browseContent")
+        // contentDiv.innerHTML=""
     }
     const articleLinks = document.querySelectorAll(selector);
     articleLinks.forEach(link => {
         link.addEventListener('click', function (e) {
             e.preventDefault();
             const articleId = this.getAttribute('data-id');
-            fetchArticleContent(articleId);
+            fetchArticleContent(theme,articleId);
         });
     });
 }
