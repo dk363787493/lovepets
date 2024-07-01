@@ -360,7 +360,7 @@ html {
     background-color: #fff; /* 确保其可见 */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     /*height: calc(100% - 150px); !* 调整高度以适应视口 *!*/
-    height:400px;
+    height: 400px;
     overflow-y: auto; /* 如果内容溢出则添加垂直滚动 */
     font-size: 12px; /* 减小整体字体大小 */
 }
@@ -399,7 +399,8 @@ html {
     color: #333;
     margin-bottom: 8px; /* 减小底部外边距 */
     font-weight: 550;
-    font-family: Arial, sans-serif; /
+    font-family: Arial, sans-serif;
+/
 }
 
 .filter-group label {
@@ -413,15 +414,32 @@ html {
     margin-right: 8px; /* 减小复选框右边距 */
 }
 
-#healthCareContent, #adoptCareContent {
+#healthCareContent {
     width: 60%;
     padding-left: 110px;
-    margin-top: 50px;
+    margin-top: 20px;
     border-right: 1px solid #e0e0e0; /* 添加右侧竖线 */
     position: relative
 }
 
- #browseContent {
+/*#adoptCareContent {*/
+/*    width: 60%;*/
+/*    padding-left: 110px;*/
+/*    margin-top: 50px;*/
+/*    border-right: 1px solid #e0e0e0; !* 添加右侧竖线 *!*/
+/*    position: relative*/
+/*}*/
+
+#adoptCareContent {
+    width: 60%;
+    padding-left: 110px;
+    margin-top: 20px;
+    border-right: 1px solid #e0e0e0; /* 添加右侧竖线 */
+    position: relative
+}
+
+
+#browseContent {
     width: 60%;
     padding-left: 110px;
     margin-top: 50px;
@@ -437,7 +455,7 @@ html {
     width: 100%;
 }
 
-#browseContent .filterArticles{
+#browseContent .filterArticles {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -447,7 +465,7 @@ html {
     width: 100%;
 }
 
-#healthCareContent .article, #adoptCareContent .article,#browseContent .article {
+#healthCareContent .article, #adoptCareContent .article, #browseContent .article {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -460,13 +478,13 @@ html {
     border-radius: 8px;
 }
 
-#healthCareContent .article .content, #adoptCareContent .article .content,#browseContent .article .content {
+#healthCareContent .article .content, #adoptCareContent .article .content, #browseContent .article .content {
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
-#healthCareContent .article h3, #adoptCareContent .article h3 ,#browseContent .article h3{
+#healthCareContent .article h3, #adoptCareContent .article h3, #browseContent .article h3 {
     /*margin: 0 0 23px 0;*/
     margin-left: 20px;
     margin-top: -25px;
@@ -474,13 +492,13 @@ html {
     color: #18181a;
 }
 
-#healthCareContent .article p, #adoptCareContent .article p,#browseContent .article p {
+#healthCareContent .article p, #adoptCareContent .article p, #browseContent .article p {
     margin: -5px 0 0 20px; /* 向右移动描述 */
     font-size: 14px;
     color: #666;
 }
 
-#healthCareContent .article img, #adoptCareContent .article img,#browseContent .article img {
+#healthCareContent .article img, #adoptCareContent .article img, #browseContent .article img {
     flex-shrink: 0;
     width: 200px;
     height: auto;
@@ -494,6 +512,22 @@ html {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+}
+
+#healthBreadcrumb {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-left: 100px;
+    margin-top: 60px;
+}
+
+#adoptBreadcrumb {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-left: 100px;
+    margin-top: 60px;
 }
 
 .breadcrumb i {
@@ -526,6 +560,7 @@ html {
     margin-left: 550px;
     margin-top: 20px;
 }
+
 .pagination-list {
     list-style: none;
     padding: 0;

@@ -13,14 +13,16 @@
 </head>
 <body>
 <my-header></my-header>
+<div class="breadcrumb" id="adoptBreadcrumb">
+    <a href="./index.html">
+        <i class="fas fa-home"></i>
+    </a>
+    <span>/</span>
+    <a href="./adopt.html">
+        <span>Pets Adopt </span>
+    </a>
+</div>
 <div id="adoptCareContent">
-    <div class="breadcrumb">
-        <a href="./index.html">
-            <i class="fas fa-home"></i>
-        </a>
-        <span>/</span>
-        <span>Pets Adopt</span>
-    </div>
     <div id="adoptContentTitle" class="title-with-toggle">
         <h2>Bite-sized analysis of boring businesses</h2>
         <div class="toggle-button">
@@ -39,9 +41,10 @@
 </div>
 <div id="adoptArticle"></div>
 <script type="module">
-    import { loadContent } from '../js/script.js';
+    import {loadContent} from '../js/script.js';
+
     const adoptLink = document.getElementById('adopt-link');
-    loadContent('adopt.html', adoptLink, 5, 1, 2, 2,true);
+    loadContent('adopt.html', adoptLink, 5, 1, 2, 2, true);
 </script>
 </body>
 
