@@ -520,7 +520,7 @@ html {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    margin-left: 100px;
+    margin-left: 110px;
     margin-top: 60px;
 }
 
@@ -528,7 +528,15 @@ html {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    margin-left: 100px;
+    margin-left: 110px;
+    margin-top: 60px;
+}
+
+#browseBreadcrumb {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px;
+    margin-left: 110px;
     margin-top: 60px;
 }
 

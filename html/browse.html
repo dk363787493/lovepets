@@ -13,14 +13,16 @@
 </head>
 <body>
 <my-header></my-header>
-<section id="browseContent">
-    <div class="breadcrumb">
-        <a href="./index.html">
-            <i class="fas fa-home"></i>
-        </a>
-        <span>/</span>
+<div class="breadcrumb" id="browseBreadcrumb">
+    <a href="./index.html">
+        <i class="fas fa-home"></i>
+    </a>
+    <span>/</span>
+    <a href="./browse.html">
         <span>Browse</span>
-    </div>
+    </a>
+</div>
+<section id="browseContent">
     <div class="filter-container">
         <button class="filter-button" id="filter-button">Filter</button>
         <div class="filter-group">
@@ -48,9 +50,10 @@
     <div class="filterArticles" id="filterArticles">
     </div>
     <script type="module">
-        import { loadContent } from '../js/script.js';
+        import {loadContent} from '../js/script.js';
+
         const browseLink = document.getElementById('browse-link');
-        loadContent('browse.html', browseLink, 10, 1, "", 1,true);
+        loadContent('browse.html', browseLink, 10, 1, "", 1, true);
     </script>
     <div id="pagination" class="pagination"></div>
 </section>

@@ -1,13 +1,15 @@
 .item_ads {
     display: flex;
     align-items: center;
+    justify-content: space-between; /* 确保内容两端对齐 */
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     padding: 20px;
-    max-width: 800px;
+    max-width: 900px;
     margin: 20px auto;
     background-color: #fff;
     position: relative;
+    text-align: left; /* 保持广告内容左对齐 */
 }
 
 .badge {
@@ -53,9 +55,12 @@
 }
 
 .item_ads_image {
-    max-width: 150px;
+    width: 150px; /* 设置具体宽度 */
+    height: 150px; /* 设置具体高度 */
     margin-left: 20px;
+    object-fit: cover; /* 确保图片按比例填充，避免失真 */
 }
+
 .article_container {
     width: 80%; /* 调整宽度以适应页面布局 */
     margin: 0 auto; /* 居中对齐 */
@@ -63,19 +68,31 @@
 }
 
 .article_content {
-    width: 75%; /* 调整宽度以适应页面布局 */
+    /*width: 80%; !* 调整宽度以适应页面布局 *!*/
+    width:900px;
     margin: 0 auto; /* 居中对齐 */
     padding: 0 20px; /* 添加内边距以便更好地对齐 */
+    text-align: left; /* 保持文章内容左对齐 */
 }
 
 .custom-h4 {
     font-size: 24pt; /* 调整字体大小 */
     color: #f1c40f; /* 与标题颜色一致 */
+    text-align: left; /* 保持标题左对齐 */
 }
+
 .article_content p, .article_content ol, .article_content ul {
     font-size: 14pt; /* 调整字体大小 */
+    text-align: left; /* 保持段落和列表左对齐 */
 }
 
 .article_content ul {
-    line-height: 1.6; /* 调整字体大小 */
+    line-height: 1.6; /* 调整行高 */
+}
+
+.article_content p img{
+    display: block;
+    margin: 0 auto; /* 居中图片 */
+    width: 850px; /* 设置具体宽度 */
+    height: 600px; /* 设置具体高度 */
 }
