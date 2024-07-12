@@ -743,3 +743,7 @@ html {
 .dropdown-option:hover {
     background-color: #f1f1f1;
 }
+
+#filterArticles{
+    min-height: 400px;
+}

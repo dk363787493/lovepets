@@ -29,6 +29,7 @@
 .item_ads_content {
     flex: 1;
     padding-right: 20px;
+    width:50px;
 }
 
 .item_ads_title {
@@ -75,11 +76,11 @@
     text-align: left; /* 保持文章内容左对齐 */
 }
 
-.custom-h4 {
-    font-size: 24pt; /* 调整字体大小 */
-    color: #f1c40f; /* 与标题颜色一致 */
-    text-align: left; /* 保持标题左对齐 */
-}
+/*.custom-h4 {*/
+/*    font-size: 24pt; !* 调整字体大小 *!*/
+/*    color: #f1c40f; !* 与标题颜色一致 *!*/
+/*    text-align: left; !* 保持标题左对齐 *!*/
+/*}*/
 
 .article_content p, .article_content ol, .article_content ul {
     font-size: 14pt; /* 调整字体大小 */
@@ -95,4 +96,16 @@
     margin: 0 auto; /* 居中图片 */
     width: 850px; /* 设置具体宽度 */
     height: 600px; /* 设置具体高度 */
+}
+
+h1 {
+    text-align: center;
+}
+h4 {
+    font-size: 24pt; /* 调整字体大小 */
+    color: #f1c40f; /* 与标题颜色一致 */
+    text-align: left; /* 保持标题左对齐 */
+}
+.article_content p {
+    line-height: 1.8; /* 调整行间距为2倍 */
 }
