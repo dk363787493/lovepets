@@ -54,7 +54,6 @@ export function fetchArticles(theme, limit, page, category_level_one, category_l
     fetch(url)
         .then(response => response.json())
         .then(articles => {
-            console.log("theme:",theme)
             const articlesDiv = document.getElementById(theme);
             articlesDiv.innerHTML = ''; // Clear old content
             articles.data.forEach(article => {
@@ -75,31 +74,31 @@ export function fetchArticles(theme, limit, page, category_level_one, category_l
             });
             attachArticleClickHandlers(theme); // Attach click handlers to article links
             if (theme !== "homeArticles") {
-                generatePagination(theme,articles.totalCnt, limit, page, category_level_one, category_level_two);
+                generatePagination(theme, articles.totalCnt, limit, page, category_level_one, category_level_two,sub_theme);
             }
         })
         .catch(err => console.error(err));
 }
 
 
-export function fetchArticleContent(theme,articleId) {
+export function fetchArticleContent(theme, articleId) {
     let articleContent
     if (theme == "homeArticles") {
-        let contentDiv=document.getElementById("homeContent")
-        contentDiv.innerHTML=""
-        articleContent=document.getElementById("homeArticle")
-    } else if (theme == "healthCareArticles") {
-        let contentDiv=document.getElementById("healthCareContent")
-        contentDiv.innerHTML=""
-        articleContent=document.getElementById("healthArticle")
-    } else if (theme == "adoptArticles") {
-        let contentDiv=document.getElementById("adoptCareContent")
-        contentDiv.innerHTML=""
-        articleContent=document.getElementById("adoptArticle")
-    } else if (theme == "filterArticles") {
-        let contentDiv=document.getElementById("browseContent")
+        let contentDiv = document.getElementById("homeContent")
         contentDiv.innerHTML = ""
-        articleContent=document.getElementById("browseArticle")
+        articleContent = document.getElementById("homeArticle")
+    } else if (theme == "healthCareArticles") {
+        let contentDiv = document.getElementById("healthCareContent")
+        contentDiv.innerHTML = ""
+        articleContent = document.getElementById("healthArticle")
+    } else if (theme == "adoptArticles") {
+        let contentDiv = document.getElementById("adoptCareContent")
+        contentDiv.innerHTML = ""
+        articleContent = document.getElementById("adoptArticle")
+    } else if (theme == "filterArticles") {
+        let contentDiv = document.getElementById("browseContent")
+        contentDiv.innerHTML = ""
+        articleContent = document.getElementById("browseArticle")
     }
     fetch(`http://localhost:8081/article/${articleId}`)
         .then(response => response.json())
@@ -133,7 +132,7 @@ export function attachArticleClickHandlers(theme) {
         link.addEventListener('click', function (e) {
             e.preventDefault();
             const articleId = this.getAttribute('data-id');
-            fetchArticleContent(theme,articleId);
+            fetchArticleContent(theme, articleId);
         });
     });
 }
@@ -207,17 +206,21 @@ export function fetchSubThemes(themeId) {
                         dropdownOptions.classList.remove('show');
                     }
                 });
+                option.dataset.value = subTheme.Id;
                 dropdownOptions.appendChild(option);
             });
         })
         .catch(error => console.error('Error fetching sub themes:', error));
 }
 
-export function generatePagination(theme,totalCnt, limit, currentPage, category_level_one, category_level_two) {
+export function generatePagination(theme, totalCnt, limit, currentPage, category_level_one, category_level_two,sub_theme) {
     const paginationDiv = document.getElementById('pagination');
     paginationDiv.innerHTML = ''; // Clear old pagination
 
     const totalPages = Math.ceil(totalCnt / limit);
+    console.log("totalCnt:",totalCnt)
+    console.log("limit:",limit)
+    console.log("totalPages:",totalPages)
     const ul = document.createElement('ul');
     ul.classList.add('pagination-list');
 
@@ -253,7 +256,8 @@ export function generatePagination(theme,totalCnt, limit, currentPage, category_
         prevLink.addEventListener('click', function (e) {
             e.preventDefault();
             //TODO
-            fetchArticles("healthCareArticles", limit, currentPage - 1, category_level_one, category_level_two);
+            // fetchArticles("healthCareArticles", limit, currentPage - 1, category_level_one, category_level_two);
+            fetchArticles(theme, limit, currentPage - 1, category_level_one, category_level_two,sub_theme);
         });
     }
     prevLi.appendChild(prevLink);
@@ -272,7 +276,7 @@ export function generatePagination(theme,totalCnt, limit, currentPage, category_
         pageLink.addEventListener('click', function (e) {
             e.preventDefault();
             // fetchArticles("healthCareArticles", limit, i, category_level_one, category_level_two);
-            fetchArticles(theme, limit, i, category_level_one, category_level_two);
+            fetchArticles(theme, limit, i, category_level_one, category_level_two,sub_theme);
         });
         li.appendChild(pageLink);
         ul.appendChild(li);
@@ -289,7 +293,7 @@ export function generatePagination(theme,totalCnt, limit, currentPage, category_
     } else {
         nextLink.addEventListener('click', function (e) {
             e.preventDefault();
-            fetchArticles("healthCareArticles", limit, currentPage + 1, category_level_one, category_level_two);
+            fetchArticles("healthCareArticles", limit, currentPage + 1, category_level_one, category_level_two,sub_theme);
         });
     }
     nextLi.appendChild(nextLink);
@@ -304,6 +308,9 @@ export function themesHandler() {
     radioButtons.forEach(radio => {
         radio.addEventListener('change', function () {
             const themeId = this.value;
+            const browseLink = document.getElementById('browse-link');
+            const dropdownHeader = document.querySelector('.dropdown-header span');
+            dropdownHeader.innerText = "Select Sub Theme"; // Clear Sub Theme selection
             if (browseLink.classList.contains('active')) {
                 fetchSubThemes(themeId);
             }
@@ -323,11 +330,11 @@ export function fileterButtonHandler() {
         const dropdownOptions = document.querySelectorAll('.dropdown-option');
         dropdownOptions.forEach(option => {
             if (option.innerText === selectedSubTheme) {
-                selectedSubThemeId = option.value;
+                selectedSubThemeId = option.dataset.value;
             }
         });
         // 使用收集到的筛选器值发送请求以获取文章数据
-        fetchArticles('filterArticles', 5, 1,selectedTheme, selectedClassification, selectedSubThemeId);
+        fetchArticles('filterArticles', 5, 1, selectedTheme, selectedClassification, selectedSubThemeId);
     });
 }
 
